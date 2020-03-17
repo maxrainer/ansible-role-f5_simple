@@ -1,0 +1,26 @@
+---
+# tasks file for f5-bigip
+
+- name: grab F5 facts
+  bigip_device_info:
+    provider: "{{ f5_provider }}"
+    gather_subset:
+      - system-info
+      - interfaces 
+      - vlans
+  register: facts
+  tags: facts
+
+- name: debug facts
+  debug: 
+    msg: "{{ hostvars[inventory_hostname] }}"
+  tags: [never, debug, facts]
+
+- name: include licenses
+  include_tasks: license.yml
+  tags: license
+
+- name: include load balance
+  include_tasks: balance.yml
+
+

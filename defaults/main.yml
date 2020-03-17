@@ -1,0 +1,6 @@
+---
+# defaults file for f5-bigip
+
+f5_provider: {}
+f5_licenses: []
+

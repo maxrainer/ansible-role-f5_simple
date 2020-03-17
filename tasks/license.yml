@@ -1,0 +1,11 @@
+---
+
+- name: install license on big-ip
+  bigip_device_license: 
+    provider: "{{ f5_provider }}"
+    accept_eula: "yes"
+    state: present
+    license_key: "{{ item }}"
+  loop: "{{ f5_licenses }}"
+  notify: save config
+
